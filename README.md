@@ -1,6 +1,8 @@
 # Use Synology NAS as a Gateway to VPN network
 
+Imagine that you want your TV to connect to a VPN, in order to watch Netflix programmes from another country. You can use your Synology NAS as a VPN client and as a gateway quite easily. The issue here is that you have to start the client everytime you want to use it and to stop it afterward. YOu probably donät want it to be constantly connected to a VPN.
 
+Here is a solution based on Docker container.
 
 
 ## Structure of the folder
