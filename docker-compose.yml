@@ -7,8 +7,6 @@ services:
       - myvlan    
     cap_add:
       - NET_ADMIN
-    devices:
-      - /dev/net/tun
     tty: true       # -i
     stdin_open: true # -t
     ports:
