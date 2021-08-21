@@ -1,7 +1,6 @@
 Use Synology NAS as a Gateway to VPN network
 
 
-${toc}
 
 
 ## Structure of the folder
