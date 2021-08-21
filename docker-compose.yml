@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  vpn:
+    build: .
+    restart: always
+    networks:
+      - myvlan    
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    tty: true       # -i
+    stdin_open: true # -t
+    ports:
+      - "4923:80"
+    container_name: my_vpn
+    
+networks:
+  private:
+  myvlan:
+    driver: macvlan
+    driver_opts:
+      parent: ovs_eth0
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
