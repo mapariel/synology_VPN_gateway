@@ -1,4 +1,4 @@
-Use Synology NAS as a Gateway to VPN network
+# Use Synology NAS as a Gateway to VPN network
 
 
 
