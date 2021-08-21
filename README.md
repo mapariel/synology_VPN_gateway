@@ -78,7 +78,7 @@ networks:
 
 You can also inspect your container to see if the network part is correct. Check the MacAddress and the IPAddress of your container on your local network.
 
-`$ docker container inspect my-vpn`
+`$ docker container inspect my_vpn`
 
 ```
 ...truncated...
