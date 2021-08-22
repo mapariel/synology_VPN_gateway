@@ -20,7 +20,7 @@ Synology_VPN_gateway
 ```
 
 You shouldn't have to modify the files that already exist. But you have to add **client.ovpn**  which is the ovpn file that you can get from your VPN provider and
-**client.pwd*** which contains your connection informations to the VPN. First line is the username, second line is the password. For instance :
+**client.pwd** which contains your connection informations to the VPN. First line is the username, second line is the password. For instance :
 ```
 toto
 ultras3cr3t
@@ -29,14 +29,14 @@ ultras3cr3t
 
 ## Installation on the NAS
 
-We are going to use docker-compose https://docs.docker.com/compose/ . If you can install docker on your NAS, then you will have docker-compose automatically.
+We are going to use *docker-compose* (https://docs.docker.com/compose/) . If you can install the app docker on your NAS, then you will get *docker-compose* automatically.
 
 Make an archive of the folder **Synology_VPN_gateway**, upload it somewhere on your NAS. One in the NAS, unzip it.
 
 Then connect to the NAS with SSH and navigate to the foler **Synology_VPN_gateway**.
 
 To create the conatiner just type.
-`docker-compose up --build -detach`
+`sudo docker-compose up --build -detach`
 
 The  IP of the container on your local network  should be visible.
 
@@ -78,7 +78,7 @@ networks:
 
 You can also inspect your container to see if the network part is correct. Check the MacAddress and the IPAddress of your container on your local network.
 
-`$ docker container inspect my_vpn`
+`$ sudo docker container inspect my_vpn`
 
 ```
 ...truncated...
@@ -115,7 +115,8 @@ You shouldn't have to modify those files.
 This script will be launched right after the container has been launched.
 It contains the modifications of the iptable (to make it a bridge), and at the end connects to the VPN.
 
-You can find explanations about those instructions at https://support.hidemyass.com/hc/en-us/articles/202721486-Using-Linux-Virtual-Machine-instead-of-a-router-for-VPN and at https://help.ubuntu.com/community/Internet/ConnectionSharing
+You can find explanations about those instructions at https://support.hidemyass.com/hc/en-us/articles/202721486-Using-Linux-Virtual-Machine-instead-of-a-router-for-VPN and at https://help.ubuntu.com/community/Internet/ConnectionSharing. To get more info about **/dev/net** device, visit https://www.kernel.org/doc/html/latest/networking/tuntap.html
+
 
 ```
 #!/bin/bash
@@ -137,13 +138,12 @@ This file will replace one configuration file. Only one line has to be uncomment
 
 ### Dockerfile
 
-The container comes from an ubuntu container. It installs some packages (openvpn and iptables), copies some files and then run the script.
+The container comes from an ubuntu container. It installs some packages (openvpn, iptables, net-tools), copies some files and then run the script.
 
 ```
 FROM ubuntu
 RUN apt-get update
-RUN apt-get -y install openvpn iptables
-# RUN apt-get -y install net-tools curl
+RUN apt-get -y install openvpn iptables net-tools
 WORKDIR /etc/ovpn
 COPY  client.ovpn /etc/ovpn/client.ovpn 
 COPY client.pwd /etc/ovpn/client.pwd
@@ -157,5 +157,3 @@ ENTRYPOINT ["./script.sh"]
 
 [1]: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/connection_network_vpnclient?version=6
 1: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/connection_network_vpnclient?version=6
-
-https://www.kernel.org/doc/html/latest/networking/tuntap.html
