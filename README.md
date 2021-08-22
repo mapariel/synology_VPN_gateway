@@ -1,6 +1,6 @@
 # Use Synology NAS as a Gateway to VPN network
 
-Imagine that you want your TV to connect to a VPN, in order to watch Netflix programmes from another country. You can use your Synology NAS as a VPN client and as a gateway quite easily. The issue here is that you have to start the client everytime you want to use it and to stop it afterward. You probably don't want it to be constantly connected to a VPN.
+Imagine that you want your TV to connect to a VPN, in order to watch Netflix programmes from another country. You can use your Synology NAS as a VPN client and as a gateway quite easily [1]. The issue here is that you have to start the client everytime you want to use it and to stop it afterward. You probably don't want it to be constantly connected to a VPN.
 
 Here is a solution based on Docker container.
 
@@ -154,5 +154,8 @@ ENTRYPOINT ["./script.sh"]
 ```
 
 ## Links
+
+[1]: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/connection_network_vpnclient?version=6
+1: https://kb.synology.com/en-global/DSM/help/DSM/AdminCenter/connection_network_vpnclient?version=6
 
 https://www.kernel.org/doc/html/latest/networking/tuntap.html
